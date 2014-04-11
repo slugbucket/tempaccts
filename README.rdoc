@@ -1,28 +1,23 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Simple Ruby on Rails application to manage temporary accounts separate from a main records system.
 
 Things you may want to cover:
 
-* Ruby version
+* Written for Ruby on Rails 4 on Ubuntu 13.04 and Ruby 1.9.3
 
-* System dependencies
+* Requires Devise (ldap_authenticatible), CanCan. Some JQuery
 
-* Configuration
+* Configuration. All hat should be required is 'bundle install' followed by setting a new secret key in config/initializers/secret_key.rb
 
-* Database creation
+* Database creation: create a database for teh relevant environment. Has been tested with named instances on MS SQL Server 2008 R2, but require 3.2.13 of Metaskills' sqlserver adapater gem.
 
-* Database initialization
+* Database initialization: If schema_migrations exists remove the first migration file and run 'rake db:migrate'
 
-* How to run the test suite
+* How to run the test suite: Yeah, right.
 
-* Services (job queues, cache servers, search engines, etc.)
+* Services: 
 
-* Deployment instructions
-
-* ...
+* Production service has been tested on Apache httpd 2.2 with Phusion Passenger for production instance.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
