@@ -1,0 +1,1 @@
+<li><%= link_to "Accounts", "/tempaccts" %></li><li><%= link_to "Groups", "/account_groups" %></li><li><%= link_to "Account types", "/account_types" %></li><% if can? :create, Role %><li><%= link_to "Roles", "/roles" %></li><% end %>

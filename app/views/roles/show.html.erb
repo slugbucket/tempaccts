@@ -1,0 +1,24 @@
+<p>
+  <strong>Name:</strong>
+  <%= @role.name %>
+</p>
+<p>
+  <strong>Resource id:</strong>
+<% if @role.resource_id %>
+<%= @role.resource_id %>
+<% else %>
+All
+<% end %>
+</p>
+<p>
+  <strong>Resource type:</strong>
+<% if @role.resource_type %>
+<%= @role.resource_type %>
+<% else %>
+All
+<% end %>
+</p>
+<div class="phonebook">
+<%= link_to 'Edit', edit_role_path(@role) %> |
+<%= link_to 'Back', roles_path %>
+</div>

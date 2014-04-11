@@ -1,0 +1,46 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+      firstname: Philippa
+      surname: Phlipswitch
+      uid: phiph01
+      password: Phiph-01
+      owner: External agency via Marketing
+      expiry_date: 2014-02-19
+      mailbox: 0
+      resource_acct: 0
+      ftp_login: 0
+      ldap_login: 0
+      wireless_guest: 0
+      printing: 0
+      description: On one week training course.
+
+two:
+      firstname: Martin
+      surname: Mudslap
+      uid: mudma01
+      password: Mudma-01
+      owner: Temporary sales
+      expiry_date: 2014-03-26
+      mailbox: 0
+      resource_acct: 0
+      ftp_login: 0
+      ldap_login: 0
+      wireless_guest: 1
+      printing: 1
+      description: On two month sales push
+
+three:
+      firstname: Cathy
+      surname: Copperslob
+      uid: copca01
+      password: Copca-01
+      owner: Administration
+      expiry_date: 2014-07-24
+      mailbox: 0
+      resource_acct: 0
+      ftp_login: 0
+      ldap_login: 0
+      wireless_guest: 1
+      printing: 1
+      description: On six month contract.

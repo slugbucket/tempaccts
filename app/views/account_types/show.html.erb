@@ -1,0 +1,19 @@
+<p>
+  <strong>Name:</strong>
+  <%= @account_type.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @account_type.description.html_safe() %>
+</p>
+
+<p>
+  <strong>Max expiry:</strong>
+  <%= @account_type.max_expiry.to_s(:my_date) %>
+</p>
+
+<div class="tempaccts">
+<%= link_to 'Edit', edit_account_type_path(@account_type) %> |
+<%= link_to 'Back', account_types_path %>
+</div>

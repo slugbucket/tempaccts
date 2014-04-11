@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  acct_group_id: 1
+  tempacct_id: 1
+
+two:
+  acct_group_id: 1
+  tempacct_id: 1

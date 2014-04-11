@@ -1,0 +1,79 @@
+<%= form_for(@tempacct) do |f| %>
+  <% if @tempacct.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tempacct.errors.count, "error") %> prohibited this tempacct from being saved:</h2>
+
+      <ul>
+      <% @tempacct.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="display: inline; float: left; width: 75%;">
+  <fieldset><legend>Account details</legend><dl>
+
+<div> <!-- wrapper around account details and help divs -->
+  <div class="field" style="float: left;">
+    <%= f.label :firstname %> (Required)<br />
+    <%= f.text_field :firstname, :class => "tempaccts" %><br />
+	<%= f.label :surname %> (Required)<br />
+    <%= f.text_field :surname, :class => "tempaccts" %><br />
+	<%= f.label :owner %><br />
+    <%= f.text_field :owner, :class => "tempaccts" %><br />
+	<%= f.label :expiry_date %> (Required)<br />
+	<% if @tempacct.expiry_date %>
+    <%= f.date_select :expiry_date, :order => [:day, :month, :year ], :selected => @tempacct.expiry_date, :start_year => Time.now.year, :end_year => @tempacct.expiry_date.year + 5 %>
+	<% else %>
+	<%= f.date_select :expiry_date, :order => [:day, :month, :year ], :default => 1.year.from_now, :start_year => Time.now.year, :end_year => Time.now.year+5 %><br />
+	<% end %>
+  </div>
+  <div class="field" style="float: left; width: 35%;">
+    <%= f.label :uid %> (Required)<br />
+    <%= f.text_field :uid, :class => "tempaccts" %><br />
+    <%= f.label :passwd, "Password" %> (Required)<br />
+    <%= f.text_field :passwd, :class => "tempaccts" %><br />
+	<%= f.label :account_type_id, "Account type" %> (Required)<br />
+	<%= f.collection_select :account_type_id, AccountType.order(:name), :id, :max_exp_label, {:selected => @tempacct.account_type_id,:prompt => 'Please select'} %><br /
+  </div>
+  </dl>
+  </fieldset>
+  </div>
+
+  <div style="clear: both;"></div>
+  
+  <div style="display: inline; float: left; width: 75%;">
+  <fieldset><legend>Directory Settings</legend>
+   <div class="field" style="float: left%;">
+	<%= f.label :ftp_login %>&nbsp;
+    <%= f.check_box :ftp_login %>&nbsp;
+	<%= f.label :in_ldap, "LDAP access" %>&nbsp;
+    <%= f.check_box :in_ldap %>&nbsp;
+	<%= f.label :printing %>&nbsp;
+    <%= f.check_box :printing %>
+	</div
+  </div>
+  </fieldset>
+  </div>
+
+  <div style="clear: both;"></div>
+
+  <div style="display: inline; float: left; width: 75%;">
+  <fieldset><legend>Additional information</legend><dl>
+  <div class="field" style="float: left; width: auto;">
+  
+    <%= f.label :description, "Please include details of the support call reference along why the account is needed." %><br />
+    <%= f.text_area :description, :rows => 5, :cols => 40, :class => "tempaccts" %>
+  </div>
+  </dl>
+  </fieldset>
+  </div>
+
+  <div style="clear: both;"></div>
+
+  <div class="actions">
+    <%= f.submit :class => 'button' %>
+  </div>
+<% end %>
+  

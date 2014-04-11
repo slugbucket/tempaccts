@@ -1,0 +1,4 @@
+<% @first_letters.each do |lt| %>
+  <%= lt != (session[:tempacct_letter]) ? link_to(lt, tempaccts_url+"?q="+lt )+" " : "<span class='digg_pagination disabled'>#{lt}</span>".html_safe  %>
+<% end %>
+<%= link_to('All', tempaccts_url+"?q=" ) %>

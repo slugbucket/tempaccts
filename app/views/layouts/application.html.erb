@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temporary accounts management</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+ <div id="banner">
+ <div id="heading">
+  <div id="logo">
+  <%= image_tag("Company_logo.gif", :width => 64, :height => 64) %>
+  </div>
+  <div id="title">
+  <h2>Company Temporary accounts management</h2>
+  </div>
+ </div> <!-- heading -->
+  <div id="search">
+    <%= render :partial => 'shared/search' %>
+  </div> <!-- search -->
+  <div style="clear: both;"></div>
+  <div id="nav">
+  	<ul class="navbar">
+    <%= render :partial => 'shared/navbar' %>
+	<%= render :partial => 'shared/login' %>
+	</ul>
+  </div>
+</div> <!-- banner -->
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+
+<%= yield %>
+<div id="footer">
+&copy; Company Name, October 2013
+</div>
+</body>
+</html>

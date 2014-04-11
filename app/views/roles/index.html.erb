@@ -1,0 +1,67 @@
+<div id="mainbody">
+<h2>Listing roles</h2>
+<p>
+<div class="digg_pagination">
+<%= will_paginate @roles %>&nbsp;<%= link_to 'New Role', new_role_path %>
+</div>
+</p>
+<!-- %= "user logged in is #{current_user.username}.<br />\n" % -->
+<p style="clear: both">
+<br />
+<strong>Warning:</strong> Be very, very careful when messing around with the roles.<br />
+Role name changes have been disabled for because changing them will
+prevent access to users belonging to that role.
+<br />
+If you really feel that a role name needs to be changed, contact the site administrator. 
+<br />
+<table class="phonebook" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Name</th>
+	  <th></th>
+	  <th>Resource id</th>
+	  <th>Resource type</th>
+	  <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @roles.each do |role| %>
+      <tr class="<%= cycle('ma_row_light', 'ma_row_dark') %>">
+        <td><%= link_to_modal role.name, role %></td>
+        <td>
+        <% if can? :edit, Role %>
+        <%= link_to image_tag("edit-icon.png", :size => "16x16", :title => "Edit details"), edit_role_path(role) %>
+        <% end %>
+        </td>
+		<td>
+			<% if role.resource_id %>
+			<%= role.resource_id %>
+			<% else %>
+			All
+			<% end %>
+		</td>
+		<td>
+			<% if role.resource_type %>
+			<%= role.resource_type %>
+			<% else %>
+			All
+			<% end %>
+		</td>
+		 <% if can? :edit, Role %>
+        <%= render :partial => "shared/delete_link", :object => role, :locals => {:display => "Delete #{role.id}" } %>
+		<% else %>
+		<td>&nbsp;</td>
+		<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+<p>
+<div class="digg_pagination">
+<%= will_paginate @roles %>&nbsp;<%= link_to 'New Role', new_role_path %>
+</div>
+</p>
+<p style="clear: both">
+</div>

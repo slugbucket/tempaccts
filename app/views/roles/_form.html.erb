@@ -1,0 +1,41 @@
+<%= form_for(@role) do |f| %>
+  <% if @role.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h2>
+
+      <ul>
+      <% @role.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="display: inline; float: left; width: 60%;">
+The name field is disabled to prevent blocking access to users of that role.
+    <fieldset><legend>Account details</legend>
+
+      <div> <!-- wrapper around account details and help divs -->
+        <div class="field" style="float: left;">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, {:size => 20, :eradonly => true} %><br />
+		  <%= f.label :resource_id %><br />
+          <%= f.text_field :resource_id, :class => "phonebook" %><br />
+		  <%= f.label :resource_type %><br />
+          <%= f.text_field :resource_type, :class => "phonebook" %>
+		  <div class="field">
+          <%= f.label :user_tokens, "Users" %><br />
+          <!-- %= f.collection_select :user_tokens, User.order(:username), :id, :username, {:selected => @role.user_tokens}, {:prompt => 'Select role users', :multiple => true, :size => 4} % --><br />
+		  <%= f.collection_select :user_tokens, User.without_role, :id, :username, {:selected => @role.user_tokens}, {:prompt => 'Select role users', :multiple => true, :size => 4} %><br />
+        </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <div style="clear: both;"></div>
+
+  <div class="actions">
+    <%= f.submit :class => 'button' %>
+  </div>
+<% end %>

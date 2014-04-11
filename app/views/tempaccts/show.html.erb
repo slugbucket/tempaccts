@@ -1,0 +1,54 @@
+<p>
+  <strong>Name:</strong>
+  <%= @tempacct.fullname %>
+</p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @tempacct.uid %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  ********
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @tempacct.owner %>
+</p>
+
+<p>
+  <strong>Expiry date:</strong>
+  <%= @tempacct.expiry_date.to_s(:my_date) %>
+</p>
+
+<p>
+  <strong>Account type:</strong>
+  <%= AccountType.account_type_name(@tempacct.account_type_id) %>
+</p>
+
+<p>
+  <strong>FTP login:</strong>
+  <%= @tempacct.ftp_login %>
+</p>
+
+<p>
+  <strong>LDAP:</strong>
+  <%= @tempacct.in_ldap %>
+</p>
+
+<p>
+  <strong>Printing access:</strong>
+  <%= @tempacct.printing %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @tempacct.description.html_safe() %>
+</p>
+
+<div class="tempaccts">
+<%= link_to 'Edit', edit_tempacct_path(@tempacct) %> |
+<%= link_to 'Back', tempaccts_path %>
+</div>

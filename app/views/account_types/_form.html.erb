@@ -1,0 +1,48 @@
+<%= form_for(@account_type) do |f| %>
+  <% if @account_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account_type.errors.count, "error") %> prohibited this account_type from being saved:</h2>
+
+      <ul>
+      <% @account_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="display: inline; float: left; width: 60%;">
+  <fieldset><legend>Account type details</legend><dl>
+
+  <div> <!-- wrapper around account details and help divs -->
+  <div class="field" style="float: left;">
+    <%= f.label :name %> (Required)<br />
+    <%= f.text_field :name, :class => "tempaccts" %><br />
+	<%= f.label :max_expiry, "Max expiry period" %> (Required)<br />
+	<% if @account_type.max_expiry %>
+    <%= f.date_select :max_expiry,  :order => [:day, :month, :year ], :selected => @account_type.max_expiry, :start_year => @account_type.max_expiry.year, :end_year => @account_type.max_expiry.year+10 %>
+	<% else %>
+	<%= f.date_select :max_expiry,  :order => [:day, :month, :year ], :default => 1.year.from_now, :start_year => Time.now.year, :end_year => Time.now.year+10 %>
+	<% end%>
+  </div>
+  </dl>
+  </fieldset>
+  </div>
+  <div style="clear: both;"></div>
+
+  <div style="display: inline; float: left; width: 60%;">
+  <fieldset><legend>Additional information</legend><dl>
+  <div class="field" style="float: left; width: auto;">
+    <%= f.label :description, "Brief description of the account type.", :class => "tempaccts"  %><br />
+    <%= f.text_area :description, :rows => 5, :cols => 40, :class => "tempaccts" %>
+  </div>
+  </dl>
+  </fieldset>
+  </div>
+
+  <div style="clear: both;"></div>
+
+  <div class="actions">
+    <%= f.submit :class => 'button' %>
+  </div>
+<% end %>

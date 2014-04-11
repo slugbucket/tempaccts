@@ -1,0 +1,6 @@
+<%= form_tag('/search', :method => 'get') do %>
+<%= text_field_tag :search, session[:search], :id => 'search_field' %>
+<%= submit_tag "Search", :name => nil, :class => "button" %> 
+<!-- %= link_to_function "Clear", "$('#search_field').val('')" % -->
+<%= link_to "Clear", "#", :class => "search" %>
+<% end %>

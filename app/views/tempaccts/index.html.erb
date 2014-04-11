@@ -1,0 +1,63 @@
+<div id="mainbody">
+<h2>Listing temporary accounts</h2>
+<div class="digg_pagination">
+<%= will_paginate @tempaccts %>&nbsp;
+<% if can? :create, Tempacct %>
+<%= link_to 'New Temporary account', new_tempacct_path %>
+<% end %>
+<p style="clear: both">
+<%= render :partial => 'by_letter' %><br />
+</p>
+</div>
+<p style="clear: both">
+<table class="tempaccts" cellspacing="0">
+  <thead>
+    <tr class="tempaccts">
+      <th>Uid</th>
+	  <th></th>
+      <th>Name</th>
+	  <th>Account type</th>
+      <th>Expiry date</th>
+      <th>LDAP</th>
+      <th>Ftp </th>
+      <th>Printing</th>
+	  <% if can? :destroy, Tempacct %>
+      <th>Delete</th>
+	  <% end %>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @tempaccts.each do |tempacct| %>
+      <tr class="<%= cycle('ma_row_dark', 'ma_row_light') %>">
+      	<td><%= link_to_modal tempacct.uid, tempacct %></td>
+        <td>
+        <% if can? :edit, Tempacct %>
+        <%= link_to image_tag("edit-icon.png", :size => "16x16", :title => "Edit details"), edit_tempacct_path(tempacct) %>
+        <% end %>
+        </td>
+        <td><%= tempacct.firstname + " " + tempacct.surname %></td>
+		<td><%= AccountType.find(tempacct.account_type_id).name %></td>
+        <td><%= tempacct.expiry_date.to_s(:my_date) %></td>
+        <td><%= tempacct.in_ldap == 1? 'Y' : 'N' %></td>
+        <td><%= tempacct.ftp_login == 1 ? 'Y' : 'N' %></td>
+        <td><%= tempacct.printing == 1 ? 'Y' : 'N' %></td>
+		<% if can? :destroy, Tempacct %>
+        <%= render :partial => "shared/delete_link", :object => tempacct, :locals => {:display => "Delete #{tempacct.uid}" } %>
+		<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+<p>
+<div class="digg_pagination">
+<%= will_paginate @tempaccts %>&nbsp;
+<% if can? :create, Tempacct %>
+<%= link_to 'New Temporary account', new_tempacct_path %>
+<% end %>
+</div>
+</p>
+</div>

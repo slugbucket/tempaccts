@@ -1,0 +1,49 @@
+<div id="mainbody">
+<h2>Listing account groups</h2>
+<div class="digg_pagination">
+<%= will_paginate @account_groups %>&nbsp;
+<% if can? :create, AccountGroup %>
+<%= link_to 'New account group', new_account_group_path %>
+<% end %>
+</div>
+<p style="clear: both">
+<br />
+<table class="tempaccts" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Name</th>
+	  <th></th>
+      <th>Description</th>
+      <th>Default expiry</th>
+      <% if can? :destroy, AccountGroup %>
+      <th>Delete</th>
+	  <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @account_groups.each do |account_group| %>
+      <tr class="<%= cycle('ma_row_light', 'ma_row_dark') %>">
+      	<td><%= link_to_modal account_group.name, account_group %></td>
+        <td>
+        <% if can? :edit, AccountGroup %>
+        <%= link_to image_tag("edit-icon.png", :size => "16x16", :title => "Edit details"), edit_account_group_path(account_group) %>
+        <% end %>
+        </td>
+        <td><%= account_group.description.html_safe() %></td>
+        <td style="width: 15%"><%= account_group.default_expiry.to_s(:my_date) %></td>
+        <% if can? :destroy, AccountType %>
+        <%= render :partial => "shared/delete_link", :object => account_group, :locals => {:display => "Delete #{account_group.name}" } %>
+		<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p>
+<div class="digg_pagination">
+<%= will_paginate @account_groups %>&nbsp;
+<% if can? :create, AccountGroup %>
+<%= link_to 'New account group', new_account_group_path %>
+<% end %>
+</div>
+</p>
