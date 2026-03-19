@@ -67,7 +67,7 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
     base64 (0.2.0)
-    bcrypt (3.1.20)
+    bcrypt (3.1.22)
     builder (3.3.0)
     cancan (1.6.10)
     coffee-rails (5.0.0)
